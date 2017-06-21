@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form( method="post" action="/insert")
+    div
+        div
+          span Full Username:
+          input(name="username")
+        div
+          span Email:
+          input(name="email")
+        div
+          input(type="submit" value="Save")
+
+  a(href="/get-data") get data
+  h1 #{items}
+
+              h2 User List
+                  table
+                      thead
+                          th UserName
+                          th Email
+                          th Delete?
+                      tbody
