@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form( action="/insert" method="post")
+    div
+        div
+          span Full name:
+          input(name="name")
+        div
+          span Age:
+          input(name="age")
+        div
+          input(type="submit" value="Save")
+
+
+  h3 Get DATA
+  a(href="/get-data") get data
+  h1 #{item}
+
+  h1 delete Data
+  form(action="/delete" method="post")
+    input(name="id")
+    input(type="submit" value="Delete")
