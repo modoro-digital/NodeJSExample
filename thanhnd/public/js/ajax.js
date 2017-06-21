@@ -1,17 +1,12 @@
 function getdt(){
 	$.get("getdata", function(data){
-		if(data.length == 0){	
-			$("tbody").empty();	
-		}
-		else
+		var sinhvien = "";
+		for(var i = 0;i < data.length; i++)
 		{
-			for(var i = 0;i < data.length; i++)
-			{
-				var item = data[i];
-				var sinhvien = sinhvien + '<tr><td hidden>'+item._id+'</td><td>' + item.mssv + '</td><td>'+item.name+'</td><td>'+item.sex+'</td><td>'+item.birthday + '</td><td><button class="btn btn-primary btn-xs edit_data" id="'+item._id+'" data-toggle="modal" data-target=".editsv"><span class="glyphicon glyphicon-pencil"></span></button></td><td><button class="btn btn-danger btn-xs delete_data" id="'+item._id+'"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';   
-			}
-			$("tbody").html(sinhvien);
+			var item = data[i];
+			sinhvien = sinhvien + '<tr><td hidden>'+item._id+'</td><td>' + item.mssv + '</td><td>'+item.name+'</td><td>'+item.sex+'</td><td>'+item.birthday + '</td><td><button class="btn btn-primary btn-xs edit_data" id="'+item._id+'" data-toggle="modal" data-target=".editsv"><span class="glyphicon glyphicon-pencil"></span></button></td><td><button class="btn btn-danger btn-xs delete_data" id="'+item._id+'"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';   
 		}
+		$('tbody').html(sinhvien);
 	});
 }
 
@@ -31,11 +26,9 @@ function checkform(x)
 function postData(l, fdata, cl){
 	var i = checkform(fdata);
 	if(i == 1){
-		b = 1;
 		alert("Vui lòng điền đầy đủ thông tin.");
 	}
 	else if(i == 2){
-		b = 1;
 		alert("Năm sinh không hợp lệ.");
 	}
 	else{
@@ -46,7 +39,6 @@ function postData(l, fdata, cl){
 			data: fdata,
 			success: function() {
 				$(cl).modal('hide');
-				getdt();
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log(textStatus, errorThrown);
@@ -75,6 +67,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var x = $('#addnew').serializeArray();
 		if(postData("/them", x, ".addsv") == 0){
+			getdt();
 			this.reset();
 		}
 	});
@@ -99,5 +92,9 @@ $(document).ready(function(){
 		e.preventDefault();
 		var x = $('#edit').serializeArray();
 		postData("/sua", x, ".editsv");
+		if(postData("/sua", x, ".editsv") == 0){
+			getdt();
+		}
+
 	});
 });
