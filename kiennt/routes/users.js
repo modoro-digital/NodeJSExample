@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/Nodejs_test');
 var userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    address:String,
+    address:String
 });
 
 var user = mongoose.model('user',userSchema);
