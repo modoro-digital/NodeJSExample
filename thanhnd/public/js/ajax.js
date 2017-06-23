@@ -51,28 +51,24 @@ function postData(l, fdata, cl){
 
 $(document).ready(function(){
 
-// Lấy dữ liệu
 	getdt();
-
-//Xóa
+	
 	$("table").on('click', '.delete_data',function(){
 		var id = $(this).attr('id');
 		if(confirm("Bạn có muốn xóa sinh viên?")){
-			$.get("/xoa/"+id, function(){ getdt(); });
+			$.get("/delete/"+id, function(){ getdt(); });
 		}
 	});
 
-//Thêm mới
 	$("#addnew").submit(function(e){
 		e.preventDefault();
 		var x = $('#addnew').serializeArray();
-		if(postData("/them", x, ".addsv") == 0){
+		if(postData("/add", x, ".addsv") == 0){
 			getdt();
 			this.reset();
 		}
 	});
 
-//get data from table
 	$("table").on('click','.edit_data',function(){
         var trElem = $(this).closest("tr");// grabs the button parent tr element
         var id = $(trElem).children("td")[0];
@@ -87,12 +83,11 @@ $(document).ready(function(){
        	$('#edit input[name="birthday"]').val($(birthday).text());
 	});
 
-//Sửa
 	$("#edit").submit(function(e){
 		e.preventDefault();
 		var x = $('#edit').serializeArray();
-		postData("/sua", x, ".editsv");
-		if(postData("/sua", x, ".editsv") == 0){
+		postData("/edit", x, ".editsv");
+		if(postData("/edit", x, ".editsv") == 0){
 			getdt();
 		}
 
