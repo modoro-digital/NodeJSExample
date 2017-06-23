@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form( action="/insert" method="post")
+  form( action="/add" method="post")
     div
         div
           span Full name:
@@ -16,8 +16,8 @@ block content
 
 
   h3 Get DATA
-  a(href="/get-data") get data
-  h1 #{item}
+  a(href="/get") get data
+  h1= item
 
   h1 delete Data
   form(action="/delete" method="post")
