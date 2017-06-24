@@ -10,4 +10,4 @@ var userSchema = new mongoose.Schema({
     mobile:String
 });
 
-var user = mongoose.model('user',userSchema);
+module.exports = mongoose.model('users',userSchema);
