@@ -1,15 +1,29 @@
-//Tao server
-//Module express
-const express = require('express');
-const fs = require('fs');
+var express = require('express');
 var app = express();
-//Cong lang nghe
-app.listen(3000, function(req, res){
-  console.log('Ket noi thanh cong!');
-});
-
 var bodyParser = require('body-parser');
 var urlencodeParser = bodyParser.urlencoded({extended: false});
+
+
+//port 3000
+app.listen(3000,function(){
+    console.log('Node server running @ http://localhost:3000')
+});
+
+app.use('/node_modules',  express.static(__dirname + '/node_modules'));
+
+
+//define the default route
+app.set("view engine", "ejs");
+app.set("views", "./public")
+
+//define the routes to show the sign in page and the sign up page
+app.get('/showSignInPage',function(req,res){
+    res.sendFile('signin.html',{'root': __dirname + '/config/views'});
+})
+
+app.get('/showSignUpPage',function(req,res){
+  res.sendFile('signup.html',{'root':__dirname + '/config/views'})
+})
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -37,10 +51,6 @@ function insert(data)
   });
 }
 
-//Cau hinh ejs tro den thu muc chua file ejs
-app.set("view engine", "ejs");
-app.set("views", "./views")
-
 //Xu lý
 app.get("/", function(req, res){
   mongoose.connect(url);
@@ -55,31 +65,31 @@ app.get("/", function(req, res){
   });
 });
 
-app.post("/them", urlencodeParser, function(req, res){
+app.post("/add", urlencodeParser, function(req, res){
   var data = req.body;
   insert(data);
   return res.redirect('/');
 });
 
-app.get("/xoa/:id", function(req, res){
+app.get("/delete/:id", function(req, res){
   var i = req.params.id;
   sinhvien.findByIdAndRemove(i, function(err){
     if(err)
       throw err;
       //We have deleted the urlencodeParser
-      console.log('User was deleted!');
+      console.log('Data was deleted!');
   });
   return res.redirect('/');
 });
 
-app.get("/sua/:id", function(req, res){
+app.get("/update/:id", function(req, res){
   var i = req.params.id;
-  sinhvien.findByIdAndRemove(i, function(err, data){
+  sinhvien.findByIdAndUpdate(i, function(err, data){
     if(err)
       console.log(err);
     else {
       {
-        res.render("edit ", {data});
+        console.log('Data was updated!');
       }
     }
   });

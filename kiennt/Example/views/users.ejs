@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Project</title>
+</head>
+<body>
+<h1 style="color: red">Đăng ký</h1>
+<form  method="post" action="/create">
+    <label>Ho ten dem:</label><input type="text" name="lastname" placeholder="Ho ten dem:" value=""></br>
+    <label>Ten:</label><input type="text" name="firstname" placeholder="Ten:" value=""></br>
+    <label>Email:</label><input type="text" name="email" placeholder="Email:"></br>
+    <label>Địa chỉ:</label><input type="text" name="address" placeholder="Địa chỉ:"></br>
+    <input type="submit" name="create" value="Đăng ký">
+</form>
+<h1 style="color: red">Sua</h1>
+<form  method="post" action="/add">
+    <label>Ho va Ten:</label><input type="text" name="lastname" placeholder="Ho ten dem:" value=""></br>
+    <label>Ten:</label><input type="text" name="firstname" placeholder="Ten:" value=""></br>
+    <label>Email:</label><input type="text" name="email" placeholder="Email:"></br>
+    <label>Địa chỉ:</label><input type="text" name="address" placeholder="Địa chỉ:"></br>
+    <input type="submit" name="add" value="Sua">
+</form>
+<h1 style="color: red">Xoa</h1>
+<form  method="post" action="/delete">
+    <label>Id:</label><input type="text" name="id" placeholder="" value=""></br>
+    <input type="submit" name="delete" value="xoa">
+</form>
+</body>
+</html>

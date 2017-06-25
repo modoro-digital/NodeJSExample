@@ -1,17 +1,33 @@
 <html>
 <head>
-    <title>This is my first node js project</title>
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
 </head>
 <body>
 <h1 style="color: red">Đăng ký</h1>
-<form  method="post" action="/users">
+<form id="users">
     <label>Họ đệm:</label><input type="text" name="lastname" placeholder="Họ đệm:" value="<%- lastname %>"></br>
     <label>Tên:</label><input type="text" name="firstname" placeholder="Tên:" value="<%- firstname %>"></br>
     <label>Email:</label><input type="text" name="email" placeholder="Email:"></br>
     <label>Tuổi:</label><input type="text" name="age" placeholder="Tuổi:"></br>
     <label>Địa chỉ:</label><input type="text" name="address" placeholder="Địa chỉ:"></br>
     <label>Điện thoại:</label><input type="text" name="mobile" placeholder="Điện thoại:"></br>
-    <input type="submit" name="save" value="Đăng ký">
+    <input type="submit" id="save" value="Đăng ký">
 </form>
+
+<script type="text/javascript">
+    $('#save').click(function(){
+        var data = $('#users').serialize();
+        $.ajax({
+            url: '/create',
+            type: 'POST',
+            cache: false,
+            data: data,
+            success: function(data){
+                alert('Success!')
+            }
+        })
+    });
+</script>
+
 </body>
 </html>
