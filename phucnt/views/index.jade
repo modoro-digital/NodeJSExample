@@ -14,5 +14,22 @@ block content
         div
           input(type="submit" value="Save")
 
-  a(href="/get-data") get data
-  h1 #{items}
+  a(href="/getdata") get data
+  h1 #{item}
+
+
+  form(method="post" action="update")
+     h1 update
+     span ID
+     input(name="id" required)
+     span full name
+     input(name="username" required)
+     span email
+     input(name="email" required)
+     input(type="submit" value="Update")
+
+  form(method="post" action="/delete")
+      h1 Delete
+      span id
+      input(name="id")
+      input(type="submit" value="Delete")

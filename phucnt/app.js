@@ -28,13 +28,6 @@ app.use(fs);
 //app.use('/users', users);
 
 
-//include routes controller
-// fs.readdirSync('./controllers').forEach(function (file) {
-//     if(file.substr(-3) == '.js') {
-//         route = require('./controllers/' + file);
-//         route.controller(app);
-//     }
-// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
