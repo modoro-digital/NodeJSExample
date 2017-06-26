@@ -20,7 +20,20 @@ module.exports = {
 
         var data = new DataModel(item);
         data.save();
-        res.redirect('/');
+        res.redirect('/get');
+    },
+
+    update: function(req, res) {
+        var id= req.body.id;
+        DataModel.findById(id, function (err, doc) {
+            if (err){
+                console.log('Error! ID not found !!');
+            }
+            doc.name = req.body.name;
+            doc.age = req.body.age;
+            doc.save();
+        })
+        res.redirect('/get');
     },
 
     get: function(req, res) {
@@ -32,8 +45,8 @@ module.exports = {
 
     delete: function(req, res) {
         var id= req.body.id;
-        Data.findByIdAndRemove(id).exec();
-        res.redirect('/');
+        DataModel.findByIdAndRemove(id).exec();
+        res.redirect('/get');
     },
 
     login: function(req, res) {

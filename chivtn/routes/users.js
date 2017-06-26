@@ -5,6 +5,7 @@ var controllers = require('../controllers/index');
 router.get('/', controllers.index);
 router.get('/login', controllers.login);
 router.post('/add', controllers.add);
+router.post('/update', controllers.update);
 router.get('/get', controllers.get);
 router.post('/delete', controllers.delete);
 

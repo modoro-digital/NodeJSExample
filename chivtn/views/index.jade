@@ -1,9 +1,10 @@
 extends layout
 
 block content
+  script(src="http://code.jquery.com/jquery-1.6.2.min.js")
   h1= title
   p Welcome to #{title}
-  form( action="/add" method="post")
+  form(id="add")
     div
         div
           span Full name:
@@ -12,14 +13,59 @@ block content
           span Age:
           input(name="age")
         div
-          input(type="submit" value="Save")
-
-
+          input(type="submit" value="Save" id="save_add")
   h3 Get DATA
   a(href="/get") get data
   h1= item
 
-  h1 delete Data
-  form(action="/delete" method="post")
+  h3 Update by ID
+  form(id="update")
+    span ID:
     input(name="id")
-    input(type="submit" value="Delete")
+    span Name:
+    input(name="name")
+    span Age:
+    input(name="age")
+    input(type="submit" value="update" id="save_update")
+
+  h1 delete Data
+  form(id="delete")
+    input(name="id")
+    input(type="submit" value="Delete" id="save_delete")
+  script.
+      $('#save_add').click(function () {
+          var data = $('#add').serialize();
+          $.ajax({
+              url: "/add",
+              type: "POST",
+              cache: false,
+              data: data,
+              success: function (data) {
+                  alert('Success!')
+              }
+          })
+      })
+      $('#save_update').click(function () {
+          var data = $('#update').serialize();
+          $.ajax({
+              url: "/update",
+              type: "POST",
+              cache: false,
+              data: data,
+              success: function (data) {
+                  alert('Updated!')
+              }
+          })
+      })
+      $('#save_delete').click(function () {
+          var data = $('#delete').serialize();
+          $.ajax({
+              url: "/delete",
+              type: "POST",
+              cache: false,
+              data: data,
+              success: function (data) {
+                  alert('Deleted!')
+              }
+          })
+      })
