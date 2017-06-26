@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form( method="post" action="/insert")
+  form(id="users")
     div
         div
           span Full Username:
@@ -12,10 +12,26 @@ block content
           span Email:
           input(name="email")
         div
-          input(type="submit" value="Save")
+          input(type="submit" value="Save" id="save")
 
   a(href="/getdata") get data
   h1 #{item}
+
+  script.
+      $(document).ready(function(){
+          $('#save').click(function () {
+              var data = $('#users').serialize();
+              $.ajax({
+                  url: '/insert',
+                  type: 'POST',
+                  data: data,
+                  success: function (data) {
+                      alert('Success!')
+                  }
+              })
+          });
+      });
+      
 
 
   form(method="post" action="update")
