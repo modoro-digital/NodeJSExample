@@ -1,15 +1,16 @@
 <html>
 <head>
     <title>Project</title>
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
 </head>
 <body>
 <h1 style="color: red">Đăng ký</h1>
-<form  method="post" action="/create">
+<form  id="users">
     <label>Ho ten dem:</label><input type="text" name="lastname" placeholder="Ho ten dem:" value=""></br>
     <label>Ten:</label><input type="text" name="firstname" placeholder="Ten:" value=""></br>
     <label>Email:</label><input type="text" name="email" placeholder="Email:"></br>
     <label>Địa chỉ:</label><input type="text" name="address" placeholder="Địa chỉ:"></br>
-    <input type="submit" name="create" value="Đăng ký">
+    <input type="submit" id="create" name="create" value="Đăng ký">
 </form>
 <h1 style="color: red">Sua</h1>
 <form  method="post" action="/add">
@@ -24,5 +25,7 @@
     <label>Id:</label><input type="text" name="id" placeholder="" value=""></br>
     <input type="submit" name="delete" value="xoa">
 </form>
+
+<script src="/script/user.js"></script>
 </body>
 </html>
